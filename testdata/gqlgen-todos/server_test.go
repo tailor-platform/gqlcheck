@@ -5,10 +5,8 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
-
-	"github.com/tailor-inc/gqlcheck"
-
-	"github.com/tailor-inc/gqlgen-todos/graph"
+	"github.com/tailor-platform/gqlcheck"
+	"github.com/tailor-platform/gqlgen-todos/graph"
 )
 
 func TestServer(t *testing.T) {

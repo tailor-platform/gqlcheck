@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/tailor-inc/gqlgen-todos/graph/model"
+	"github.com/tailor-platform/gqlgen-todos/graph/model"
 )
 
 // CreateTodo is the resolver for the createTodo field.
