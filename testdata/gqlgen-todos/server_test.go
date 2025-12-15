@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"testing"
 
 	"github.com/99designs/gqlgen/graphql/handler"
@@ -42,8 +43,8 @@ func TestServerViaGet(t *testing.T) {
 	h.AddTransport(transport.GET{})
 
 	checker := gqlcheck.New(h, gqlcheck.Debug())
-	checker.Test(t).
-		QueryViaGet(`query {todos {text}}`).
+	checker.TestWithMethod(t, http.MethodGet).
+		Query(`query {todos {text}}`).
 		Check().
 		HasStatusOK().
 		HasNoErrors().
@@ -76,8 +77,8 @@ func TestServerViaGetWithVariables(t *testing.T) {
 		HasNoErrors()
 
 	// Query via GET (variables passed to demonstrate the feature)
-	checker.Test(t).
-		QueryViaGetWithVariables(
+	checker.TestWithMethod(t, http.MethodGet).
+		QueryWithVariables(
 			`query { todos { text } }`,
 			map[string]any{},
 		).

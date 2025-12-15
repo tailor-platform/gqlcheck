@@ -50,6 +50,8 @@ PASS
 
 gqlcheck also supports GET requests for GraphQL queries, following the [GraphQL over HTTP specification](https://graphql.github.io/graphql-over-http/).
 
+Use `TestWithMethod` to specify the HTTP method:
+
 ```go
 func TestServerViaGet(t *testing.T) {
 	h := handler.New(
@@ -62,8 +64,8 @@ func TestServerViaGet(t *testing.T) {
 	h.AddTransport(transport.GET{})
 
 	checker := gqlcheck.New(h, gqlcheck.Debug())
-	checker.Test(t).
-		QueryViaGet(`query {todos {text}}`).
+	checker.TestWithMethod(t, http.MethodGet).
+		Query(`query {todos {text}}`).
 		Check().
 		HasStatusOK().
 		HasNoErrors().
@@ -85,11 +87,11 @@ OUTPUT:
 PASS
 ```
 
-You can also pass variables using `QueryViaGetWithVariables()`:
+You can also pass variables using `QueryWithVariables()`:
 
 ```go
-checker.Test(t).
-	QueryViaGetWithVariables(
+checker.TestWithMethod(t, http.MethodGet).
+	QueryWithVariables(
 		`query GetUser($id: ID!) { user(id: $id) { name } }`,
 		map[string]any{"id": "123"},
 	).

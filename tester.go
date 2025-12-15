@@ -29,11 +29,22 @@ type Tester struct {
 }
 
 // Test starts a new test with the given *testing.T.
+// The default HTTP method is POST.
 func (c *Checker) Test(t TestingT) *Tester {
 	return &Tester{
 		checker: c,
 		t:       t,
 		method:  http.MethodPost, // default
+		headers: make(map[string]string),
+	}
+}
+
+// TestWithMethod starts a new test with the given *testing.T and HTTP method.
+func (c *Checker) TestWithMethod(t TestingT, method string) *Tester {
+	return &Tester{
+		checker: c,
+		t:       t,
+		method:  method,
 		headers: make(map[string]string),
 	}
 }
