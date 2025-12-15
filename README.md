@@ -46,6 +46,57 @@ OUTPUT:
 PASS
 ```
 
+## GET Query Support
+
+gqlcheck also supports GET requests for GraphQL queries, following the [GraphQL over HTTP specification](https://graphql.github.io/graphql-over-http/).
+
+```go
+func TestServerViaGet(t *testing.T) {
+	h := handler.New(
+		graph.NewExecutableSchema(
+			graph.Config{
+				Resolvers: &graph.Resolver{},
+			},
+		),
+	)
+	h.AddTransport(transport.GET{})
+
+	checker := gqlcheck.New(h, gqlcheck.Debug())
+	checker.Test(t).
+		QueryViaGet(`query {todos {text}}`).
+		Check().
+		HasStatusOK().
+		HasNoErrors().
+		HasData(map[string]any{
+			"todos": []any{},
+		})
+}
+```
+
+OUTPUT:
+```console
+=== RUN   TestServerViaGet
+2024/02/05 11:31:12 == GET http://127.0.0.1:61506?query=query+%7Btodos+%7Btext%7D%7D
+2024/02/05 11:31:12 >> header map[]
+2024/02/05 11:31:12 >> body: nil
+2024/02/05 11:31:12 << status: 200 OK
+2024/02/05 11:31:12 << body: {"data":{"todos":[]}}
+--- PASS: TestServerViaGet (0.00s)
+PASS
+```
+
+You can also pass variables using `QueryViaGetWithVariables()`:
+
+```go
+checker.Test(t).
+	QueryViaGetWithVariables(
+		`query GetUser($id: ID!) { user(id: $id) { name } }`,
+		map[string]any{"id": "123"},
+	).
+	Check().
+	HasStatusOK()
+```
+
 ---
 
 MIT

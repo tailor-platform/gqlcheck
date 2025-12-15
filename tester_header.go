@@ -2,10 +2,14 @@ package gqlcheck
 
 // WithHeader set header in the request.
 func (tt *Tester) WithHeader(key, value string) *Tester {
-	return &Tester{client: tt.client.WithHeader(key, value)}
+	tt.headers[key] = value
+	return tt
 }
 
 // WithHeaders sets header in the request.
 func (tt *Tester) WithHeaders(headers map[string]string) *Tester {
-	return &Tester{client: tt.client.WithHeaders(headers)}
+	for k, v := range headers {
+		tt.headers[k] = v
+	}
+	return tt
 }
