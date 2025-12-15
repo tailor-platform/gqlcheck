@@ -49,7 +49,11 @@ func (tt *Tester) Check() *Tester {
 		params := url.Values{}
 		params.Set("query", tt.query)
 		if tt.variables != nil {
-			v, _ := json.Marshal(tt.variables)
+			v, err := json.Marshal(tt.variables)
+			if err != nil {
+				tt.t.Errorf("failed to marshal variables: %v", err)
+				tt.t.FailNow()
+			}
 			params.Set("variables", string(v))
 		}
 		path := "?" + params.Encode()
