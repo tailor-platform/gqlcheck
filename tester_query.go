@@ -18,23 +18,20 @@ func (q Query) String() string {
 
 // Request sets the query and variables to the request.
 func (tt *Tester) Request(q Query) *Tester {
-	return &Tester{client: tt.client.WithJSON(map[string]any{
-		"query":     q.Query,
-		"variables": q.Variables,
-	})}
+	tt.query = q.Query
+	tt.variables = q.Variables
+	return tt
 }
 
 // Query sets the query to the request.
 func (tt *Tester) Query(q string) *Tester {
-	return &Tester{client: tt.client.WithJSON(map[string]any{
-		"query": q,
-	})}
+	tt.query = q
+	return tt
 }
 
 // QueryWithVariables sets the query and variables to the request.
 func (tt *Tester) QueryWithVariables(q string, variables map[string]any) *Tester {
-	return &Tester{client: tt.client.WithJSON(map[string]any{
-		"query":     q,
-		"variables": variables,
-	})}
+	tt.query = q
+	tt.variables = variables
+	return tt
 }
