@@ -8,10 +8,19 @@ changelog:
         - breaking-change
     - title: New Features 🎉
       labels:
-        - enhancement
-    - title: Fix bug 🐛
+        - "Type: Feature"
+    - title: Enhancements 💪
       labels:
-        - bug
+        - "Type: Enhancement"
+    - title: Bug Fixes 🐛
+      labels:
+        - "Type: Bug"
+    - title: Dependencies 📦
+      labels:
+        - dependencies
+    - title: House Keeping 🧹
+      labels:
+        - "Type: House Keeping"
     - title: Other Changes
       labels:
         - "*"
