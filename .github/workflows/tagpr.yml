@@ -1,0 +1,30 @@
+name: tagpr
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tagpr:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: write
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Install deps
+        run: make depsdev
+
+      - id: run-tagpr
+        name: Run tagpr
+        uses: Songmu/tagpr@v1
