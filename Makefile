@@ -1,8 +1,8 @@
-export GO111MODULE=on
-
 default: test
 
-ci: depsdev test
+test:
+	go test -v ./...
+	cd testdata/gqlgen-todos/ && go test -v ./...
 
 lint:
 	golangci-lint run ./...
