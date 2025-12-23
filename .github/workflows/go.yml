@@ -22,3 +22,7 @@ jobs:
       - name: Test
         run: |
           go test -v ./...
+      - name: Test
+        run: |
+          go test -v ./...
+        working-directory: testdata/gqlgen-todos
