@@ -1,0 +1,26 @@
+changelog:
+  exclude:
+    labels:
+      - tagpr
+  categories:
+    - title: Breaking Changes 🛠
+      labels:
+        - breaking-change
+    - title: New Features 🎉
+      labels:
+        - "Type: Feature"
+    - title: Enhancements 💪
+      labels:
+        - "Type: Enhancement"
+    - title: Bug Fixes 🐛
+      labels:
+        - "Type: Bug"
+    - title: Dependencies 📦
+      labels:
+        - dependencies
+    - title: House Keeping 🧹
+      labels:
+        - "Type: House Keeping"
+    - title: Other Changes
+      labels:
+        - "*"
