@@ -7,11 +7,11 @@ replace github.com/tailor-platform/gqlcheck => ./../..
 require (
 	github.com/99designs/gqlgen v0.17.95
 	github.com/tailor-platform/gqlcheck v0.0.0-00010101000000-000000000000
-	github.com/vektah/gqlparser/v2 v2.5.58
+	github.com/vektah/gqlparser/v2 v2.5.64
 )
 
 require (
-	github.com/agnivade/levenshtein v1.2.1 // indirect
+	github.com/agnivade/levenshtein v1.2.2 // indirect
 	github.com/coder/websocket v1.8.15 // indirect
 	github.com/go-viper/mapstructure/v2 v2.5.0 // indirect
 	github.com/goccy/go-yaml v1.19.2 // indirect
